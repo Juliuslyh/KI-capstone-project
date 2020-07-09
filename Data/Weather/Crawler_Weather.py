@@ -9,9 +9,9 @@ pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', None)
 
 class WeatherCrawler():
-    def __init__(self, CityList, Period):
-        self.CityList = CityList
-        self.Period = Period
+    def __init__(self):
+        self.CityList = ['Frankfurt']
+        self.Period = [2015, 2016, 2017, 2018, 2019, 2020]
         self.url1 = 'https://www.timeanddate.com/weather/germany/'
         self.url2 = '/historic?month='
         self.url3 = '&year='
@@ -31,15 +31,15 @@ class WeatherCrawler():
                     for i in range(1, 13):
                         time.sleep(10)  # 设置时间间隔为10秒
                         new_url = base_url1 + city.lower() + base_url2 + str(i) + base_url3 + str(year)
-                        print(new_url)
+                        #print(new_url)
                         res = requests.get(new_url)
                         res_elements = etree.HTML(res.text)
                         table = res_elements.xpath(
                             '/html/body/div[1]/div[6]/main/article/div[4]/div[1]')
-                        print(table)
+                        #print(table)
                         table = etree.tostring(table[0], encoding='utf-8').decode()
                         df = pd.read_html(table, encoding='utf-8', header=0)[0]
-                        print(df)
+                        #print(df)
 
                         dict_weather = {"Temperature-High": df['Temperature'][0],
                                         "Temperature-Low": df['Temperature'][1],
