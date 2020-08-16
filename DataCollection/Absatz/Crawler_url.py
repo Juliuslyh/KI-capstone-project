@@ -1,6 +1,7 @@
 import pandas as pd
 from requests_html import HTMLSession
 from datetime import datetime
+import os
 
 pd.set_option('display.max_columns', None)
 # 显示所有行
@@ -36,7 +37,8 @@ class UrlCrawler:
 
         #for date in df_catalog['date']:
         #    date = '-'.join(date.split(','))
-        df_catalog.to_csv('url.csv')
+        df_catalog.to_csv(os.path.abspath(os.path.dirname(os.getcwd()))+'/data/'
+                            +'url.csv')
 
 if __name__ == '__main__':
     UrlCrawler().load_data()

@@ -10,7 +10,8 @@ pd.set_option('display.max_rows', None)
 
 class WeatherCrawler():
     def __init__(self):
-        self.CityList = ['Frankfurt']
+        self.CityList = ['Korbach', 'Marburg', 'Giessen', 'Wiesbaden', 'Kassel',
+                         'Bad-hersfeld', 'Fulda', 'Frankfurt', 'Darmstadt']
         self.Period = [2015, 2016, 2017, 2018, 2019, 2020]
         self.url1 = 'https://www.timeanddate.com/weather/germany/'
         self.url2 = '/historic?month='
@@ -31,7 +32,7 @@ class WeatherCrawler():
                     for i in range(1, 13):
                         time.sleep(10)  # 设置时间间隔为10秒
                         new_url = base_url1 + city.lower() + base_url2 + str(i) + base_url3 + str(year)
-                        #print(new_url)
+                        print(new_url)
                         res = requests.get(new_url)
                         res_elements = etree.HTML(res.text)
                         table = res_elements.xpath(
@@ -54,6 +55,7 @@ class WeatherCrawler():
                     for i in range(1, int(time.strftime('%m', time.localtime(time.time())))):
                         time.sleep(10)  # 设置时间间隔为10秒
                         new_url = base_url1 + city.lower() + base_url2 + str(i) + base_url3 + str(year)
+                        print(new_url)
                         res = requests.get(new_url)
                         res_elements = etree.HTML(res.text)
                         table = res_elements.xpath(

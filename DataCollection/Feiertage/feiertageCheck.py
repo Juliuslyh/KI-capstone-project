@@ -2,6 +2,7 @@ from datetime import datetime, date, timedelta
 from calendra.europe import Germany
 import calendar
 import pandas as pd
+import os
 
 class feiertag:
     def __init__(self):
@@ -43,11 +44,13 @@ class feiertag:
 
         df_date = pd.DataFrame(holiday_list, index=date_list)
         df_date.columns = ['is_working_day?']
-        df_date.to_csv('date_holiday.csv')
+        df_date.to_csv(os.path.abspath(os.path.dirname(os.getcwd()))+'/data/'
+                            +'date_holiday.csv')
 
         df_date_monthly = pd.DataFrame(holiday_list_month, index=date_list_month)
         df_date_monthly.columns = ['num of Non-working day']
-        df_date_monthly.to_csv('date_holiday_monthly.csv')
+        df_date_monthly.to_csv(os.path.abspath(os.path.dirname(os.getcwd()))+'/data/'
+                            +'date_holiday_monthly.csv')
 
 if __name__ == '__main__':
     feiertag().load_data()

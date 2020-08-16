@@ -53,7 +53,8 @@ def AbsatzCrawler():
 
     bier_list = []
     biermischung_list = []
-    df_url = pd.read_csv('url.csv')
+    df_url = pd.read_csv(os.path.abspath(os.path.dirname(os.getcwd()))+'/data/'
+                            +'url.csv')
     for index, row in df_url.iterrows():
         if int(row['date'].split(',')[0]) >= 2015:
             print(row['date'])
@@ -65,5 +66,7 @@ def AbsatzCrawler():
     df_bier = pd.concat([df for df in bier_list], ignore_index=True)
     df_biermischung = pd.concat([df for df in biermischung_list], ignore_index=True)
 
-    df_bier.to_csv('Bierabsatz.csv')
-    df_biermischung.to_csv('Absatz von Biermischungen.csv')
+    df_bier.to_csv(os.path.abspath(os.path.dirname(os.getcwd()))+'/data/'
+                            +'Bierabsatz.csv')
+    df_biermischung.to_csv(os.path.abspath(os.path.dirname(os.getcwd()))+'/data/'
+                            +'Absatz von Biermischungen.csv')
