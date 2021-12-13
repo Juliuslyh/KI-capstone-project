@@ -2,7 +2,7 @@ SoMaJo==2.1.1
 requests==2.22.0
 requests_html==0.10.0
 calendra==6.1.2
-lxml==4.5.1
+lxml==4.6.5
 wget==3.2
 pandas==0.25.2
 beautifulsoup4==4.9.1
